@@ -1,0 +1,78 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+
+
+- name: Git Auto Commit
+  # You may pin to the exact commit or the version.
+  # uses: stefanzweifel/git-auto-commit-action@49620cd3ed21ee620a48530e81dba0d139c9cb80
+  uses: stefanzweifel/git-auto-commit-action@v4.14.1
+  with:
+    # Commit message
+    commit_message: # optional, default is Apply automatic changes
+    # Git branch name, where changes should be pushed too. Required if Action is used on the `pull_request` event
+    branch: # optional, default is ${{ github.head_ref }}
+    # Commit options (eg. --no-verify)
+    commit_options: # optional, default is 
+    # Add options (eg. -u)
+    add_options: # optional, default is 
+    # Status options (eg. --untracked-files=no)
+    status_options: # optional, default is 
+    # File pattern used for `git add`. For example `src/*.js`
+    file_pattern: # optional, default is .
+    # Local file path to the git repository. Defaults to the current directory (`.`)
+    repository: # optional, default is .
+    # Name used for the commit user
+    commit_user_name: # optional, default is github-actions[bot]
+    # Email address used for the commit user
+    commit_user_email: # optional, default is github-actions[bot]@users.noreply.github.com
+    # Value used for the commit author. Defaults to the username of whoever triggered this workflow run.
+    commit_author: # optional, default is ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+    # Message used to create a new git tag with the commit. Keep this empty, if no tag should be created.
+    tagging_message: # optional, default is 
+    # Push options (eg. --force)
+    push_options: # optional, default is 
+    # Skip the check if the git repository is dirty and always try to create a commit.
+    skip_dirty_check: # optional
+    # Skip the call to git-fetch.
+    skip_fetch: # optional
+    # Skip the call to git-checkout.
+    skip_checkout: # optional
+    # Stop the shell from expanding filenames (https://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html)
+    disable_globbing: # optional
+    # Create new branch with the name of `branch`-input in local and remote repository, if it doesn't exist yet.
+    create_branch: # optional
